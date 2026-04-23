@@ -1,6 +1,6 @@
-import Fetch from './Fetch';
+import { Fetch } from './components';
 
-function App() {
+const App = () => {
   return (
     <>
       <Fetch />
