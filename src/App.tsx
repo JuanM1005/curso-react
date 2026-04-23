@@ -6,6 +6,6 @@ const App = () => {
       <Fetch />
     </>
   );
-}
+};
 
 export default App;

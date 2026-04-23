@@ -7,26 +7,26 @@ export const Fetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users');
-
-      if (!res.ok) {
-        throw new Error('Error en la petición');
-      }
-
-      const jsonData: User[] = await res.json();
-
-      setData(jsonData);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+
+        if (!res.ok) {
+          throw new Error('Error en la petición');
+        }
+
+        const jsonData: User[] = await res.json();
+
+        setData(jsonData);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Error desconocido');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
   }, []);
 
