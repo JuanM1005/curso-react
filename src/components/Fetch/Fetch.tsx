@@ -4,12 +4,14 @@ import type User from './Fetch.types';
 
 export const Fetch = () => {
   const [data, setData] = useState<User[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError('');
+
       try {
         const res = await fetch('https://jsonplaceholder.typicode.com/users');
 
