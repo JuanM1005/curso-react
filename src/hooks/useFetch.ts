@@ -38,7 +38,6 @@ export const useFetch = <T,>(url: string): Params<T> => {
 
         const jsonData: T = await response.json();
 
-        console.log(jsonData)
         setData(jsonData);
         setError(null); // Limpiar errores anteriores si la solicitud es exitosa
       } catch (err) {

@@ -1,9 +1,13 @@
-import { Fetch } from './components';
+import { Button } from './components';
 
 const App = () => {
+  const handleClick = () => {
+    alert('Button clicked!');
+  };
+
   return (
     <>
-      <Fetch />
+      <Button label="Click me!" onClick={handleClick}></Button>
     </>
   );
 };
