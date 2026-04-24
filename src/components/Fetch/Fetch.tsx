@@ -1,44 +1,35 @@
-import { useEffect, useState } from 'react';
 import styles from './Fetch.module.css';
 import type User from './Fetch.types';
+import { useFetch } from '../../hooks';
+
+const url = 'https://jsonplaceholder.typicode.com/users';
 
 export const Fetch = () => {
-  const [data, setData] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const { data, loading, error } = useFetch<User[]>(url);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError('');
+  if (loading)
+    return (
+      <div className={styles.state}>
+        <div className={styles.spinner} />
+        <p>Cargando...</p>
+      </div>
+    );
 
-      try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (error)
+    return (
+      <div className={styles.state}>
+        <span className={styles.errorIcon}>⚠️</span>
+        <p className={styles.errorText}>{error.message}</p>
+      </div>
+    );
 
-        if (!res.ok) {
-          throw new Error('Error en la petición');
-        }
-
-        const jsonData: User[] = await res.json();
-
-        setData(jsonData);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error desconocido');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <h1>Cargando...</h1>;
-  }
-
-  if (error) {
-    return <h1>{error}</h1>;
-  }
+  if (!data)
+    return (
+      <div className={styles.state}>
+        <span className={styles.emptyIcon}>📭</span>
+        <p>No hay datos disponibles</p>
+      </div>
+    );
 
   return (
     <div className={styles.container}>
