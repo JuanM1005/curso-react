@@ -14,7 +14,7 @@ interface Params<T> {
   error: ErrorType;
 }
 
-export const useFetch = <T,>(url: string): Params<T> => {
+export const useFetch = <T>(url: string): Params<T> => {
   const [data, setData] = useState<Data<T>>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<ErrorType>(null);

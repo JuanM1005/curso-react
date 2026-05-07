@@ -1,4 +1,4 @@
-import { Button } from './components';
+import { Button, Form } from './components';
 
 const App = () => {
   const handleClick = () => {
@@ -7,7 +7,9 @@ const App = () => {
 
   return (
     <>
-      <Button label="Click me!" onClick={handleClick}></Button>
+      <Form onSubmit={handleClick}>
+        <Button label="Click me!"/>
+      </Form>
     </>
   );
 };
