@@ -1,12 +1,30 @@
-import type ButtonProps from './Button.types';
+import clsx from 'clsx';
 
-export const Button = ({ label, onClick }: ButtonProps) => {
+import type { ButtonProps } from './Button.types';
+import styles from './Button.styles';
+
+export const Button = ({
+  children,
+  icon,
+  variant = 'primary',
+  fullWidth = false,
+  className,
+  type = 'button',
+  ...rest
+}: ButtonProps) => {
   return (
     <button
-      className="bg-blue-500 text-white px-2.5 py-5 border-0 rounded-[5px] cursor-pointer"
-      onClick={onClick}
+      type={type}
+      className={clsx(
+        styles.base,
+        styles[variant],
+        fullWidth && styles.fullWidth,
+        className,
+      )}
+      {...rest}
     >
-      {label}
+      {icon}
+      {children}
     </button>
   );
 };

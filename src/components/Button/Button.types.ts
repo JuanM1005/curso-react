@@ -1,4 +1,10 @@
-export default interface ButtonProps {
-  label: string;
-  onClick?: () => void; // ? significa que la función onClick es opcional
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+
+type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  icon?: ReactNode;
+  variant?: ButtonVariant;
+  fullWidth?: boolean;
 }
