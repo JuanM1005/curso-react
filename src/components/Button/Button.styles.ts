@@ -7,6 +7,8 @@ const styles = {
   secondary:
     'border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 disabled:hover:bg-white',
 
+  third: 'font-medium text-white bg-slate-800 hover:bg-slate-700',
+
   ghost:
     'font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-700 disabled:hover:bg-transparent disabled:hover:text-slate-500',
 

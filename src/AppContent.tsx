@@ -16,12 +16,16 @@ const AppContent = () => {
   };
 
   const handleDecrement = (): void => {
-    setGlobalValue((prev) => prev - 1);
+    if (globalValue > 0) {
+      setGlobalValue((prev) => prev - 1);
+    }
   };
 
   const handleReset = (): void => {
     setGlobalValue(0);
   };
+
+  const isDisabled = globalValue === 0;
 
   return (
     <main className={styles.container}>
@@ -32,9 +36,7 @@ const AppContent = () => {
 
         <p className={styles.headerSpan}>Contador global</p>
 
-        <h1 className={styles.title}>
-          {globalValue}
-        </h1>
+        <h1 className={styles.title}>{globalValue}</h1>
 
         <p className={styles.textContent}>
           Este valor se administra desde el contexto y puede compartirse entre
@@ -50,10 +52,7 @@ const AppContent = () => {
             Aumentar contador
           </Button>
 
-          <Button
-            variant="ghost"
-            onClick={handleReset}
-          >
+          <Button variant="ghost" onClick={handleReset} disabled={isDisabled}>
             Resetear contador
           </Button>
 
@@ -61,6 +60,7 @@ const AppContent = () => {
             variant="secondary"
             icon={<HiOutlineMinus size={20} />}
             onClick={handleDecrement}
+            disabled={isDisabled}
           >
             Decrementar contador
           </Button>

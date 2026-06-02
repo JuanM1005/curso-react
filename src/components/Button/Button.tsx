@@ -4,12 +4,12 @@ import type { ButtonProps } from './Button.types';
 import styles from './Button.styles';
 
 export const Button = ({
+  type = 'button',
   children,
   icon,
   variant = 'primary',
   fullWidth = false,
   className,
-  type = 'button',
   ...rest
 }: ButtonProps) => {
   return (
