@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import useModalContext from './hooks/useModalContext';
 import { useEscapeKey } from './hooks/useEscapeKey';
@@ -20,6 +20,10 @@ export const Modal = ({ children }: ModalProps) => {
     return null;
   }
 
+  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   // createPortal(children, domNode)
   // children: Elemento o contenido a renderizar
   // domNode: nodo del DOM donde se insertara
@@ -32,7 +36,7 @@ export const Modal = ({ children }: ModalProps) => {
       <section
         className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl"
         ref={modalRef}
-        onClick={(e) => e.stopPropagation()}
+        onClick={handleModalClick}
       >
         <div className="mb-6">{children}</div>
         <div className="flex justify-end">
