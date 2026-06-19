@@ -5,7 +5,6 @@ import {
 } from 'react-icons/hi2';
 import useGlobalContext from './hooks/useGlobalContext';
 
-import styles from './AppContent.styles';
 import { Button } from './components';
 
 const AppContent = () => {
@@ -28,22 +27,24 @@ const AppContent = () => {
   const isDisabled = globalValue === 0;
 
   return (
-    <main className={styles.container}>
-      <section className={styles.sectionWrapper}>
-        <div className={styles.headerIcon}>
+    <main className="flex min-h-svh items-center justify-center bg-slate-50 px-4">
+      <section className="w-full max-w-sm rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
           <HiOutlineSparkles size={24} />
         </div>
 
-        <p className={styles.headerSpan}>Contador global</p>
+        <p className="text-sm font-medium text-slate-500">Contador global</p>
 
-        <h1 className={styles.title}>{globalValue}</h1>
+        <h1 className="mt-2 text-5xl font-bold tracking-tight text-slate-900">
+          {globalValue}
+        </h1>
 
-        <p className={styles.textContent}>
+        <p className="mt-3 mb-5 text-sm leading-relaxed text-slate-500">
           Este valor se administra desde el contexto y puede compartirse entre
           componentes.
         </p>
 
-        <div className={styles.buttonWrapper}>
+        <div className="flex flex-col gap-3">
           <Button
             variant="primary"
             icon={<HiOutlinePlus size={20} />}
