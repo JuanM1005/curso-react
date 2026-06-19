@@ -2,12 +2,12 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import GlobalProvider from './context/GlobalProvider';
+import { ModalProvider } from './components/Modal/context/ModalProvider';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GlobalProvider>
+    <ModalProvider>
       <App />
-    </GlobalProvider>
+    </ModalProvider>
   </StrictMode>,
 );
