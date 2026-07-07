@@ -1,5 +1,5 @@
 export interface User {
-  id: number
+  id: number;
   name: string;
   username: string;
   email: string;
@@ -9,3 +9,5 @@ export interface User {
     city: string;
   };
 }
+
+export type CreateUserPayload = Omit<User, 'id'>;

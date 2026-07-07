@@ -1,9 +1,12 @@
-import { useCallback } from 'react';
+import { useCallback, useState, type FormEvent } from 'react';
 import { getCharacter } from '../../services/api.service';
 import type { Character } from '../../models';
 import { useApi } from '../../hooks';
 
 export const ApiLayout = () => {
+
+  const [inputId, setInputId] = useState<string>('1');
+  const [characterId, setCharacterId] = useState<number>(1);
   // Memoizamos la factory con useCallback y deps vacías [].
   //
   // SIN useCallback: cada render crea una nueva función `() => getCharacter(1)`.
@@ -14,7 +17,7 @@ export const ApiLayout = () => {
   //
   // CON useCallback + []: la referencia de getCharacterById es siempre la misma,
   // por lo que fetch no se recrea entre renders y el useEffect no se vuelve a ejecutar.
-  const getCharacterById = useCallback(() => getCharacter(1), []);
+  const getCharacterById = useCallback(() => getCharacter(characterId), [characterId]);
 
   const { data, error, loading, fetch } = useApi<Character>(getCharacterById, {
     autoFetch: true,
@@ -39,9 +42,37 @@ export const ApiLayout = () => {
     );
   }
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+
+    const id = Number(inputId)
+
+    if (!id || id < 1) return
+
+    setCharacterId(id)
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
       <section className="w-full max-w-sm rounded-3xl border border-white/10 bg-white/10 p-6 text-white shadow-2xl backdrop-blur">
+        <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
+          <input
+            type="number"
+            min="1"
+            value={inputId}
+            onChange={(event) => setInputId(event.target.value)}
+            placeholder="ID del personaje"
+            className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-2 text-white outline-none placeholder:text-slate-500 focus:border-blue-500"
+          />
+
+          <button
+            type="submit"
+            className="rounded-xl bg-blue-500 px-4 py-2 font-medium text-white transition hover:bg-blue-600 active:scale-95"
+          >
+            Buscar
+          </button>
+        </form>
+
         {data && (
           <article className="flex flex-col items-center text-center">
             <img

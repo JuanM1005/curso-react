@@ -1,6 +1,9 @@
 import type { CreateUserHeaderProps } from './CreateUserHeader.types';
 
-export const CreateUserHeader = ({ loading, onCreate }: CreateUserHeaderProps) => {
+export const CreateUserHeader = ({
+  loading,
+  onCreate,
+}: CreateUserHeaderProps) => {
   return (
     <header className="mb-8">
       <h1 className="text-3xl font-bold tracking-tight text-slate-900">

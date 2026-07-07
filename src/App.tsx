@@ -1,7 +1,7 @@
-import { FetchLayout } from './layout';
+import { ApiLayout } from './layout';
 
 const App = () => {
-  return <FetchLayout />;
+  return <ApiLayout />;
 };
 
 export default App;

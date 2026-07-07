@@ -1,2 +1,2 @@
 export * from './ApiLayout/ApiLayout';
-export * from './FetchLayout/FetchLayout'
+export * from './FetchLayout/FetchLayout';
