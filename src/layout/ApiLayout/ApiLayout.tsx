@@ -4,7 +4,6 @@ import type { Character } from '../../models';
 import { useApi } from '../../hooks';
 
 export const ApiLayout = () => {
-
   const [inputId, setInputId] = useState<string>('1');
   const [characterId, setCharacterId] = useState<number>(1);
   // Memoizamos la factory con useCallback y deps vacías [].
@@ -17,7 +16,10 @@ export const ApiLayout = () => {
   //
   // CON useCallback + []: la referencia de getCharacterById es siempre la misma,
   // por lo que fetch no se recrea entre renders y el useEffect no se vuelve a ejecutar.
-  const getCharacterById = useCallback(() => getCharacter(characterId), [characterId]);
+  const getCharacterById = useCallback(
+    () => getCharacter(characterId),
+    [characterId],
+  );
 
   const { data, error, loading, fetch } = useApi<Character>(getCharacterById, {
     autoFetch: true,
@@ -43,14 +45,14 @@ export const ApiLayout = () => {
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const id = Number(inputId)
+    const id = Number(inputId);
 
-    if (!id || id < 1) return
+    if (!id || id < 1) return;
 
-    setCharacterId(id)
-  }
+    setCharacterId(id);
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
